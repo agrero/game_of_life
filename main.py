@@ -1,5 +1,5 @@
 from src.Gol import Gol
-
+from src.Box import Box
 from src.plot.figures import heatmap_animation
 
 import plotly.graph_objects as go
@@ -15,12 +15,9 @@ y_dim = 200
 p_flipped = .5
 
 n_flipped = int(x_dim*y_dim*p_flipped)
-n_loops = 400
+n_loops = 700
 
-gol = Gol(
-    shape = (x_dim,y_dim),
-    init_flipped = n_flipped
-)
+gol = Gol(Box().random_box((x_dim,y_dim), n_flipped))
 
 frames, count = gol.simulate(n_loops)
 

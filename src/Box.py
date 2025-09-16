@@ -2,13 +2,14 @@ import numpy as np
 import random as rnd
 
 class Box:
-    def __init__(self, shape:tuple[int,int], init_flipped:int=1) -> None:
+    def __init__(self, box:np.typing.ArrayLike=None) -> None:
+        self.box = box
 
-        self.box = np.zeros(shape=shape[0] * shape[1])
+    def random_box(self, shape:tuple[int,int]=(100,100), init_flipped:int=1000) ->np.typing.ArrayLike:
+        box = np.zeros(shape=shape[0] * shape[1])
 
         flipped = np.array(rnd.sample(range(shape[0] * shape[1]), init_flipped))
 
-        self.box[flipped] = 1.
+        box[flipped] = 1
 
-        self.box = np.reshape(self.box, shape)     
-
+        return np.reshape(box, shape)   

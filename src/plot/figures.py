@@ -15,12 +15,12 @@ def heatmap_animation(frames:ArrayLike, gol_engine:Gol) -> go.Figure:
     init_data = [
         go.Heatmap(z=frames[0], colorscale='agsunset')
     ]
-    
+
     layout = go.Layout(
         title="Conway's Game of Life",
         updatemenus=[play_button],
-        xaxis=dict(range=[0, gol_engine.shape[0]-1]),
-        yaxis=dict(range=[0, gol_engine.shape[1]-1])
+        xaxis=dict(range=[0, frames[0].shape[0]-1]),
+        yaxis=dict(range=[0, frames[0].shape[1]-1])
     )
     
     return go.Figure(

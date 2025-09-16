@@ -24,9 +24,6 @@ class Plotter:
             yaxis=dict(range=[0, data.shape[1]-1])
         )
 
-        print(data[data['step']==0])
-        print(pd.unique(data.loc[:,'step']))
-
         frames = [
             go.Frame(data=[plot_type(z=data[data['step'] == ndx], colorscale='agsunset')])
             for ndx in pd.unique(data.loc[:,'step'])

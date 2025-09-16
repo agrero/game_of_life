@@ -7,13 +7,13 @@ from scipy.signal import convolve2d
 
 
 class Gol(Box):
-    def __init__(self, shape:tuple[int,int], init_flipped:int) -> None:
-        super().__init__(shape, init_flipped)
-        self.shape = shape
+    def __init__(self, box:np.typing.ArrayLike=None) -> None:
+
+        super().__init__(box)
+
         self.kernel = np.array([[1,1,1],[1,0,1],[1,1,1]])
 
-        self.count = float(sum(sum(self.box)))
-   
+        self.count = float(sum(sum(self.box))) 
 
         self.neighbors = self.count_neighbors(self.box)
 
@@ -23,14 +23,14 @@ class Gol(Box):
     def iteration(self):
 
         # DEATH 
-        self.box[self.neighbors >= 4] = 0.
-        self.box[self.neighbors <= 1] = 0.
+        self.box[self.neighbors >= 4] = 0
+        self.box[self.neighbors <= 1] = 0
         # LIFE conditions 
-        self.box[((self.neighbors == 3) & (self.box==0))] = 1.
+        self.box[((self.neighbors == 3) & (self.box==0))] = 1
 
         # recheck neighbors
         self.neighbors = self.count_neighbors(self.box)
-
+        
         # count the surivors
         self.count = float(sum(sum(self.box)))
 
